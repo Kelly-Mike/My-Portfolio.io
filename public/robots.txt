@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /skills
+Allow: /projects
+Allow: /services
+Allow: /contact
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+Disallow: /admin
+Disallow: /api/admin/
+Disallow: /uploads/projects/*.tmp
+
+Sitemap: https://mikekellydonkoh.com/sitemap.xml

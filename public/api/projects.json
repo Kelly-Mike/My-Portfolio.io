@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Personal Portfolio Website",
+    "description": "A responsive developer portfolio built to showcase web development and design work with an integrated admin management portal.",
+    "category": "Web Development",
+    "projectUrl": "https://github.com/Kelly-Mike",
+    "projectDate": "2025",
+    "published": true,
+    "images": [
+      {
+        "id": 1,
+        "url": "/images/profile.png",
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "DataVault Bundle Platform",
+    "description": "A web platform concept for acquiring, managing, and tracking mobile internet data bundles fast and securely.",
+    "category": "Web Application",
+    "projectUrl": "",
+    "projectDate": "2025",
+    "published": true,
+    "images": []
+  },
+  {
+    "id": 3,
+    "title": "SERPENT Arcade Game",
+    "description": "A classic browser arcade snake game featuring custom physics, score multipliers, and dynamic speed scaling.",
+    "category": "Game Dev",
+    "projectUrl": "",
+    "projectDate": "2024",
+    "published": true,
+    "images": []
+  }
+]

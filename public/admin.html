@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Mike Kelly Donkoh Portfolio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-raised: #121212;
+      --bg-card: #161616;
+      --border: #2B2B2B;
+      --text: #FFFFFF;
+      --text-muted: #B7B7B7;
+      --text-faint: #6E6E6E;
+      --accent: #db8709;
+      --accent-soft: rgba(212, 175, 55, 0.14);
+      --accent-2: #f2a25c;
+      --accent-2-soft: rgba(242, 205, 92, 0.14);
+      --on-accent: #0A0A0A;
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+      --font-mono: 'Montserrat', sans-serif;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --container: 1160px;
+    }
+
+    [data-theme="light"] {
+      --bg: #FFFFFF;
+      --bg-raised: #F4F6F9;
+      --bg-card: #FFFFFF;
+      --border: #E1E5EB;
+      --text: #0A0A0A;
+      --text-muted: #4B5563;
+      --text-faint: #8993A1;
+      --accent: #1D5FD6;
+      --accent-soft: rgba(29, 95, 214, 0.08);
+      --accent-2: #0A2E7A;
+      --accent-2-soft: rgba(10, 46, 122, 0.08);
+      --on-accent: #FFFFFF;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .admin-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(20, 93, 202, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .admin-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .admin-brand {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .admin-brand span {
+      color: var(--accent);
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      background: var(--bg-raised);
+      color: var(--text);
+    }
+
+    .btn-danger {
+      border-color: #8b2e2e;
+      color: #f87171;
+      background: transparent;
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    main {
+      padding: 40px 0 80px;
+    }
+
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .panel p.lede {
+      margin: 0 0 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group.full {
+      grid-column: 1/-1;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .status-msg {
+      margin-top: 12px;
+      font-size: 13px;
+      min-height: 18px;
+      color: var(--accent-2);
+    }
+
+    .status-msg.error {
+      color: #f87171;
+    }
+
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-raised);
+    }
+
+    .project-thumb {
+      width: 88px;
+      height: 66px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--text-faint);
+      text-align: center;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-meta h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+
+    .project-meta p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-2-soft);
+      color: var(--accent-2);
+      margin-right: 6px;
+    }
+
+    .badge.draft {
+      background: rgba(110, 110, 110, 0.2);
+      color: var(--text-faint);
+    }
+
+    .item-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .image-chip {
+      position: relative;
+      width: 100px;
+      height: 75px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-raised);
+    }
+
+    .image-chip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-chip .chip-actions {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-chip:hover .chip-actions {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .preview-card {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .preview-card h4 {
+      margin: 0 0 8px;
+    }
+
+    @media (max-width:720px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loginScreen" class="login-wrap">
+    <div class="login-card panel">
+      <h2>Admin Login</h2>
+      <p class="lede">Sign in to manage portfolio projects. This area is not visible to visitors.</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUser">Username</label>
+          <input type="text" id="loginUser" name="username" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" name="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+        <p class="status-msg" id="loginStatus"></p>
+      </form>
+      <p style="margin-top:20px;font-size:13px;color:var(--text-faint);">
+        <a href="/" style="color:var(--accent);">← Back to portfolio</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="adminApp" class="hidden">
+    <header class="admin-header">
+      <div class="container admin-header-inner">
+        <div class="admin-brand"><span>Admin</span> · Project Manager</div>
+        <div class="admin-actions">
+          <a href="/" class="btn btn-outline btn-sm">View Site</a>
+          <a href="/projects" class="btn btn-outline btn-sm">Projects Page</a>
+          <button type="button" class="btn btn-outline btn-sm" id="logoutBtn">Log Out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="panel">
+        <h2 id="formTitle">Add New Project</h2>
+        <p class="lede">Create or edit a project. Use Preview before publishing. Published projects appear on the public
+          Projects page.</p>
+
+        <form id="projectForm">
+          <input type="hidden" id="projectId" value="">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="pTitle">Project Title *</label>
+              <input type="text" id="pTitle" required placeholder="e.g. Personal Portfolio Website">
+            </div>
+            <div class="form-group full">
+              <label for="pDesc">Description</label>
+              <textarea id="pDesc" rows="3" placeholder="Short description of the project"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="pCategory">Category</label>
+              <input type="text" id="pCategory" placeholder="e.g. Web Development">
+            </div>
+            <div class="form-group">
+              <label for="pDate">Date (optional)</label>
+              <input type="text" id="pDate" placeholder="e.g. 2025 or March 2025">
+            </div>
+            <div class="form-group full">
+              <label for="pUrl">Project URL (optional)</label>
+              <input type="url" id="pUrl" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+              <label class="checkbox-row">
+                <input type="checkbox" id="pPublished"> Publish on website
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top:8px;">
+            <button type="button" class="btn btn-outline" id="previewBtn">Preview</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn">Save Project</button>
+            <button type="button" class="btn btn-outline hidden" id="cancelEditBtn">Cancel Edit</button>
+          </div>
+          <p class="status-msg" id="formStatus"></p>
+
+          <div id="previewBox" class="preview-card hidden">
+            <p
+              style="font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 12px;">
+              Preview</p>
+            <div id="previewContent"></div>
+          </div>
+        </form>
+
+        <div id="imageSection" class="hidden"
+          style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border);">
+          <h3 style="margin:0 0 8px;font-size:17px;">Project Images</h3>
+          <p class="lede" style="margin-bottom:12px;">Upload one or more photos. Images are optimized automatically (max
+            10MB each).</p>
+          <form id="uploadForm">
+            <div class="form-row">
+              <input type="file" id="imageFiles" accept="image/jpeg,image/png,image/webp,image/gif" multiple>
+              <button type="submit" class="btn btn-primary btn-sm">Upload Images</button>
+            </div>
+            <p class="status-msg" id="uploadStatus"></p>
+          </form>
+          <div class="image-grid" id="imageGrid"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Your Projects</h2>
+        <p class="lede">All projects (published and drafts). No limit on how many you can add.</p>
+        <div class="project-list" id="projectList">
+          <p style="color:var(--text-faint);font-size:14px;">Loading…</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>
